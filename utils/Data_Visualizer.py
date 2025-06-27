@@ -66,7 +66,7 @@ def generate_graph():
 
     region_avg = df.groupby(['region', 'age_group'], observed=True)['purchase_amount'].mean().reset_index()
 
-    plt.figure(figsize=(16, 12))
+    plt.figure(figsize=(8, 6))
     sns.barplot(
         data=region_avg,
         x='region',
