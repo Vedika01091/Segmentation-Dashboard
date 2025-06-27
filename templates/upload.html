@@ -11,8 +11,9 @@
   <nav class="navbar">
     <div class="logo">MyApp</div>
     <ul class="nav-links">
-      <!-- Removed Home and Upload -->
-      <li><button class="logout-btn">Logout</button></li>
+    
+      <!-- <li><button class="logout-btn">Logout</button></li> -->
+      <a class="logout-btn" href="{{ url_for('logout') }}">Logout</a>
     </ul>
   </nav>
 
@@ -29,12 +30,29 @@
 
   <section class="upload-section">
     <h2>Upload CSV File</h2>
-    <label for="file-upload" class="custom-file-upload">Choose CSV File</label>
-    <input type="file" id="file-upload" accept=".csv" />
-    <div id="uploaded-file-name"></div>
-    <button id="submit-btn" type="button">Submit</button>
-    <button id="upload-btn" type="button">Upload</button>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <label for="file-upload" class="custom-file-upload">Choose CSV File</label>
+      <input type="file" id="file-upload" name="csv_file" accept=".csv" required />
+      <div id="uploaded-file-name"></div>
+      <button id="upload-btn" type="submit">Upload</button>
+    </form>
   </section>
+
+
+<script>
+    const fileUpload = document.getElementById('file-upload');
+    const uploadedFileName = document.getElementById('uploaded-file-name');
+
+    fileUpload.style.display = 'none';
+
+    fileUpload.addEventListener('change', () => {
+        if (fileUpload.files.length > 0) {
+            uploadedFileName.textContent = `Selected file: ${fileUpload.files[0].name}`;
+        } else {
+            uploadedFileName.textContent = '';
+        }
+    });
+</script>
 
 </body>
 </html>

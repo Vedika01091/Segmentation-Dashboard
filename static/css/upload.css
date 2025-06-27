@@ -1,4 +1,4 @@
-/* ====== Reset & Base ====== */
+
 *,
 *::before,
 *::after {
@@ -8,17 +8,17 @@
 body {
   margin: 0;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #ffffff; /* white page background */
-  color: #0b1e4d; /* dark blue text for contrast */
+  background-color: #ffffff; 
+  color: #0b1e4d; 
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* ====== Navbar ====== */
+
 .navbar {
-  background-color: #0b1e4d; /* dark blue */
+  background-color: #0b1e4d; 
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -30,7 +30,7 @@ body {
 .logo {
   font-weight: 900;
   font-size: 1.8rem;
-  color: #6bb1ff; /* light blue */
+  color: #6bb1ff; 
   letter-spacing: 1.4px;
 }
 
@@ -60,20 +60,20 @@ body {
   outline: none;
 }
 
-/* ====== About Project Section ====== */
+
 .about-project {
   max-width: 700px;
   margin: 3rem auto 2rem;
   padding: 0 1.5rem;
   text-align: center;
-  color: #0b1e4d; /* dark blue text */
+  color: #0b1e4d; 
 }
 
 .about-project h2 {
   font-size: 2.4rem;
   font-weight: 900;
   margin-bottom: 1rem;
-  color: #142a66; /* mid blue */
+  color: #142a66; 
   letter-spacing: 0.6px;
 }
 
@@ -83,16 +83,16 @@ body {
   margin-bottom: 1rem;
 }
 
-/* ====== Upload Section ====== */
+
 .upload-section {
   max-width: 450px;
   margin: 2rem auto 4rem;
   padding: 2rem;
-  background-color: #1e398f; /* original blue background */
+  background-color: #1e398f; 
   border-radius: 14px;
   box-shadow: 0 12px 30px rgba(107, 177, 255, 0.3);
   text-align: center;
-  color: #ffffff; /* white text inside the box */
+  color: #ffffff; 
   user-select: none;
   border: none;
 }
@@ -101,7 +101,7 @@ body {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   font-weight: 900;
-  color: #a3c1ff; /* lighter blue for heading */
+  color: #a3c1ff; 
 }
 
 #file-upload {
@@ -131,12 +131,12 @@ body {
   margin: 0.5rem 0 1.5rem;
   font-style: italic;
   color: #a3c1ff;
-  min-height: 1.2rem; /* reserve space */
+  min-height: 1.2rem; 
 }
 
-/* Buttons */
-#submit-btn,
-#upload-btn {
+
+#upload-btn
+ {
   background-color: #0b1e4d;
   color: #6bb1ff;
   font-weight: 700;
@@ -150,26 +150,23 @@ body {
   user-select: none;
 }
 
-#submit-btn:hover,
-#submit-btn:focus,
 #upload-btn:hover,
-#upload-btn:focus {
+#upload-btn:focus
+ {
   background-color: #142a66;
   color: #ffffff;
   outline: none;
 }
 
-/* ====== Responsive ====== */
+
 @media (max-width: 600px) {
-  .about-project,
-  .upload-section {
+  .about-project {
     margin-left: 1rem;
     margin-right: 1rem;
     max-width: 100%;
   }
 
-  #submit-btn,
-  #upload-btn {
+  #submit-btn {
     display: block;
     width: 100%;
     margin: 0.5rem 0;

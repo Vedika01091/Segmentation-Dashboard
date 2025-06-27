@@ -1,21 +1,43 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from pymongo import MongoClient
+from werkzeug.utils import secure_filename
+import os
 from utils.Data_Visualizer import generate_graph
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 client = MongoClient("mongodb://localhost:27017")
-db = client['your_database_name']
+db = client['Segmentation_Dashboard']
 users_collection = db['users']
+
+
+app.config["UPLOAD_FOLDER"] = "datasets/"
+
+
+@app.route("/upload", methods=["GET", "POST"])
+def upload():
+    if 'username' not in session:
+        flash("Please log in to upload files.", "warning")
+        return redirect(url_for('login'))
+    if request.method == "POST":
+        uploaded_file=request.files.get("csv_file")
+        if uploaded_file:
+            filename = secure_filename(uploaded_file.filename)
+            file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+            os.makedirs(app.config["UPLOAD_FOLDER"],exist_ok=True)
+            uploaded_file.save(file_path)
+            return redirect(url_for('dashboard'))
+
+    return render_template("upload.html")
 
 @app.route('/')
 def home():
     return render_template('home.html')
 
 
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route('/signup', methods=['GET','POST'])
 def signup():
     if request.method == 'POST':
         username = request.form['username']
@@ -43,6 +65,8 @@ def signup():
 
     return render_template('signup.html')
 
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -68,36 +92,15 @@ def logout():
     flash('Logged out.', 'info')
     return redirect(url_for('login'))
 
-@app.route('/upload')
-def upload():
-    if 'username' not in session:
-        return redirect(url_for('login'))
-    return render_template('upload.html')
 
 @app.route('/dashboard')
 def dashboard():
-    # if 'username' not in session:
-    #     return redirect(url_for('login'))
-    # generate_graph()
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    generate_graph()
     return render_template('dashboard.html')
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
