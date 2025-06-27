@@ -3,11 +3,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def generate_graph():
-    location = "datasets/Customer_Purchasing_Behaviors.csv"
+def generate_graph(username, filename):
+    location = "datasets/" + filename
     df = pd.read_csv(location)
 
-    destination = "static/graphs"
+    destination = "static/" + username
     os.makedirs(destination, exist_ok=True)
 
     sns.set_theme(style="whitegrid")
@@ -30,7 +30,7 @@ def generate_graph():
     plt.legend(title="Loyalty Score")
     plt.tight_layout()
     plt.savefig(os.path.join(destination, "income_vs_purchase.png"))
-    plt.show()
+    #plt.show()
 
     # -----------------------------------------------------
     # 2. Scatter Plot: Loyalty Score vs Purchase Frequency
@@ -50,7 +50,7 @@ def generate_graph():
     plt.legend(title="Region")
     plt.tight_layout()
     plt.savefig(os.path.join(destination, "loyalty_score_vs_purchase_frequency.png"))
-    plt.show()
+    #plt.show()
 
     # ------------------------------------------------------
     # 3. Bar Plot: Region-wise Average Spending by Age Group
@@ -80,4 +80,4 @@ def generate_graph():
     plt.legend(title="Age Group", loc='upper left', bbox_to_anchor=(0, 1))
     plt.tight_layout()
     plt.savefig(os.path.join(destination, "region_avg_spending.png"))
-    plt.show()
+    #plt.show()

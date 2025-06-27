@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Graph Analysis and Solutions</title>
- <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
 <body>
-
-    <!-- Navigation -->
     <header>
         <nav>
-            <!-- <a href="/logout" class="logout-button" aria-label="Logout">Logout</a> -->
             <a class="logout-button" aria-label="Logout" href="{{ url_for('logout') }}">Logout</a>
         </nav>
         <h1>Graph Insights and Recommendations</h1>
     </header>
 
     <main>
-        <!-- Section 1: Income vs Purchase -->
         <article class="card">
             <h2>1. Income vs Purchase</h2>
             <figure>
-                <img src="{{ url_for('static', filename='graphs/income_vs_purchase.png') }}" 
+                <img src="{{ url_for('static', filename=username+'/income_vs_purchase.png') }}"
                      alt="Graph showing correlation between Income and Purchase Patterns">
                 <figcaption>Trends in purchasing behavior by income bracket</figcaption>
             </figure>
@@ -29,23 +25,21 @@
         </article>
         <hr>
 
-        <!-- Section 2: Loyalty Score vs Purchase Frequency -->
         <article class="card">
             <h2>2. Loyalty Score vs Purchase Frequency</h2>
             <figure>
-                <img src="{{ url_for('static', filename='graphs/loyalty_score_vs_purchase_frequency.png') }}" 
-                     alt="Chart illustrating loyalty score impact on purchase frequency">
+                <img src="{{ url_for('static', filename=username+'/loyalty_score_vs_purchase_frequency.png') }}"
+                    alt="Chart illustrating loyalty score impact on purchase frequency">
                 <figcaption>Customer retention and behavior mapping</figcaption>
             </figure>
             <p><strong>Solution:</strong> Reward high-loyalty segments with exclusive promotions to further encourage engagement.</p>
         </article>
         <hr>
 
-        <!-- Section 3: Region-wise Average Spending -->
         <article class="card">
             <h2>3. Average Spending by Region</h2>
             <figure>
-                <img src="{{ url_for('static', filename='graphs/region_avg_spending.png') }}" 
+                <img src="{{ url_for('static', filename=username+'/region_avg_spending.png') }}"
                      alt="Bar graph displaying regional spending averages">
                 <figcaption>Insights on localized consumer behavior</figcaption>
             </figure>

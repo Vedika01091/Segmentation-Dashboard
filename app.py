@@ -28,6 +28,12 @@ def upload():
             file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
             os.makedirs(app.config["UPLOAD_FOLDER"],exist_ok=True)
             uploaded_file.save(file_path)
+
+            db.uploaded_files.insert_one({
+                "username": session.get("username"),
+                "filename": filename,
+                "filepath": file_path
+            })
             return redirect(url_for('dashboard'))
 
     return render_template("upload.html")
@@ -96,9 +102,23 @@ def logout():
 @app.route('/dashboard')
 def dashboard():
     if 'username' not in session:
+        flash("Please log in to access the dashboard.", "warning")
         return redirect(url_for('login'))
-    generate_graph()
-    return render_template('dashboard.html')
+
+    username = session['username']
+
+    latest_file = db.uploaded_files.find_one(
+        {"username": username},
+        sort=[("_id", -1)]
+    )
+
+    if latest_file:
+        filename = latest_file['filename']
+        generate_graph(username, filename)
+    else:
+        filename = None
+
+    return render_template('dashboard.html', username=username, filename=filename)
 
 
 if __name__ == '__main__':
